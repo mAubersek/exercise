@@ -13,6 +13,13 @@ const UsersList = () => {
             );
     }
 
+    const [selectedUserId, setSelectedUserId] = useState(null);
+
+    const handleSelect = (uId) => {
+        return () => setSelectedUserId(uId);
+    }
+
+
     useEffect(() => {
         fetchUsers()
         console.log(users)
@@ -20,9 +27,16 @@ const UsersList = () => {
     return (
         <>
             {users.map(user => (
-                <UserCard key={user.id} user={user}/>
+                <UserCard
+                    key={user.id}
+                    user={user}
+                    isSelected={selectedUserId === user.id}
+                    onClick={handleSelect(user.id)}
+                />
             ))}
-        </>)
+        </>
+    )
+
 }
 
 export default UsersList;
