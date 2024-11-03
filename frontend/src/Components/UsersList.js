@@ -2,7 +2,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import UserCard from "./UserCard";
 
-const UsersList = () => {
+const UsersList = ({selectedUser, setSelectedUser}) => {
     const [users, setUsers] = useState([]);
 
     const fetchUsers = () => {
@@ -12,13 +12,6 @@ const UsersList = () => {
                 }
             );
     }
-
-    const [selectedUserId, setSelectedUserId] = useState(null);
-
-    const handleSelect = (uId) => {
-        return () => setSelectedUserId(uId);
-    }
-
 
     useEffect(() => {
         fetchUsers()
@@ -30,13 +23,12 @@ const UsersList = () => {
                 <UserCard
                     key={user.id}
                     user={user}
-                    isSelected={selectedUserId === user.id}
-                    onClick={handleSelect(user.id)}
+                    isSelected={selectedUser && selectedUser.id === user.id}
+                    onClick={() => setSelectedUser(user)}
                 />
             ))}
         </>
     )
-
 }
 
 export default UsersList;
