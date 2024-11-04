@@ -7,14 +7,14 @@ const UsersList = ({ selectedUser, setSelectedUser }) => {
   const apiUrl = process.env.REACT_APP_API_URL;
 
   const fetchUsers = async () => {
-    await axios
-      .get(
+    try {
+      const response = await axios.get(
         `${apiUrl}/users?limit=20&select=firstName,lastName,age,gender,email,phone`,
-      )
-      .then((r) => {
-        //console.log(r);
-        setUsers(r.data.users);
-      });
+      );
+      setUsers(response.data.users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
   };
 
   useEffect(() => {

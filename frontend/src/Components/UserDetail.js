@@ -143,7 +143,7 @@ const UserDetail = ({ user, setUser }) => {
       </div>
     );
   }
-  return <div className="ml-64">Select an user from the list</div>;
+  return <div className="ml-64">Select a user from the list</div>;
 };
 
 export default UserDetail;
