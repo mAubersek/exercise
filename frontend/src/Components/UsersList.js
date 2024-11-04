@@ -12,14 +12,13 @@ const UsersList = ({ selectedUser, setSelectedUser }) => {
         `${apiUrl}/users?limit=20&select=firstName,lastName,age,gender,email,phone`,
       )
       .then((r) => {
-        console.log(r);
+        //console.log(r);
         setUsers(r.data.users);
       });
   };
 
   useEffect(() => {
     fetchUsers();
-    console.log(users);
   }, []);
 
   useEffect(() => {

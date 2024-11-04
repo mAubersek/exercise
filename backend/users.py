@@ -1,3 +1,5 @@
+from fastapi import HTTPException
+
 users = [
     {
         "id": 1,
@@ -48,7 +50,9 @@ users = [
 
 
 def get_users(skip, limit, select):
-    print(select)
+    if skip < 0 or limit <= 0:
+        raise HTTPException(status_code=400, detail="Invalid skip or limit")
+
     # handles skip and limit
     paginated_users = users[skip:skip + limit]
 
@@ -69,13 +73,17 @@ def get_users(skip, limit, select):
         "limit": limit
     }
 
-def update_user(user_id, data):
+def update_user(user_id: int, data: dict):
     for user in users:
         if user["id"] == user_id:
+            if not data:  # Check if the body is empty
+                raise HTTPException(status_code=400, detail="Request body cannot be empty")
+
             # Update only fields provided in data
             for key, value in data.items():
                 if key in user:
                     user[key] = value
-            print(users)
+                else:
+                    raise HTTPException(status_code=400, detail=f"Field '{key}' is not valid")
             return user
-    return None
+    raise HTTPException(status_code=404, detail="User not found")

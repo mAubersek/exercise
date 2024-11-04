@@ -43,6 +43,10 @@ module.exports = {
             "@apply outline outline-orange-focus": {},
           },
         },
+        select: {
+          "@apply w-2/3 border border-gray-300 rounded p-2 outline-none focus:outline focus:outline-orange-focus":
+            {},
+        },
       });
     },
   ],
