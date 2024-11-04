@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import SuccessNotification from "./Notification";
 
-const UserDetail = ({ user }) => {
+const UserDetail = ({ user, setUser }) => {
   let id, firstName, lastName, age, gender, email, phone;
   if (user) ({ id, firstName, lastName, age, gender, email, phone } = user);
 
@@ -19,20 +19,17 @@ const UserDetail = ({ user }) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const updatedData = Object.fromEntries(formData.entries());
-    console.log(updatedData);
     await axios
       .put(`${apiUrl}/users/${id}`, updatedData, {
         headers: { "Content-Type": "application/json" },
       })
       .then((r) => {
-        console.log(r);
+        setUser(r.data);
         setEnabledEdit(false);
         setShowNotification(true);
       })
       .catch((err) => console.error(err));
   };
-
-  console.log(user);
 
   const LineDetail = ({ title, content }) => {
     return (

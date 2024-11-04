@@ -21,6 +21,21 @@ const UsersList = ({ selectedUser, setSelectedUser }) => {
     fetchUsers();
     console.log(users);
   }, []);
+
+  useEffect(() => {
+    function updateViewData() {
+      setUsers(
+        users.map((user) =>
+          user.id === selectedUser.id ? { ...user, ...selectedUser } : user,
+        ),
+      );
+    }
+
+    if (selectedUser) {
+      updateViewData();
+    }
+  }, [selectedUser]);
+
   return (
     <>
       {users.map((user) => (
