@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const UserDetail = ({ user }) => {
@@ -7,6 +7,10 @@ const UserDetail = ({ user }) => {
     ({ id, firstName, lastName, age, gender, email, phone } = user);
   }
   const [enabledEdit, setEnabledEdit] = useState(false);
+
+  useEffect(() => {
+    setEnabledEdit(false);
+  }, [user]);
 
   const updateUser = (event) => {
     event.preventDefault();
@@ -17,7 +21,10 @@ const UserDetail = ({ user }) => {
       .put(`https://dummyjson.com/users/${id}`, updatedData, {
         headers: { "Content-Type": "application/json" },
       })
-      .then((r) => console.log(r))
+      .then((r) => {
+        console.log(r);
+        setEnabledEdit(false);
+      })
       .catch((err) => console.error(err));
   };
 
@@ -36,6 +43,9 @@ const UserDetail = ({ user }) => {
     <div className="fixed text-black left-64 p-4 w-full">
       {user && (
         <div>
+          <div className={"text-2xl font-bold mb-3"}>
+            {firstName} {lastName}
+          </div>
           {enabledEdit ? (
             <>
               <form onSubmit={updateUser}>
@@ -87,9 +97,6 @@ const UserDetail = ({ user }) => {
             </>
           ) : (
             <>
-              <div className={"text-2xl font-bold mb-3"}>
-                {firstName} {lastName}
-              </div>
               <LineDetail title={"ID"} content={id} />
               <LineDetail title={"First name"} content={firstName} />
               <LineDetail title={"Last name"} content={lastName} />

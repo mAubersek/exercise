@@ -1,0 +1,9 @@
+PUT http://127.0.0.1:8000/users/1
+Content-Type: application/json
+
+{
+  "firstName": "Updated",
+  "lastName": "User",
+  "age": 31
+}
+
