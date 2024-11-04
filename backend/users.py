@@ -47,9 +47,27 @@ users = [
 ]
 
 
-def get_users():
-    return users
+def get_users(skip, limit, select):
+    print(select)
+    # handles skip and limit
+    paginated_users = users[skip:skip + limit]
 
+    # counts for field total
+    total_users = len(users)
+
+    # handles select
+    if select:
+        fields = ["id"] + select.split(',') # includes id
+        paginated_users = [
+            {key: user[key] for key in fields if key in user} for user in paginated_users
+        ]
+
+    return {
+        "users": paginated_users,
+        "total": total_users,
+        "skip": skip,
+        "limit": limit
+    }
 
 def update_user(user_id, data):
     for user in users:

@@ -1,4 +1,3 @@
-import UserCard from "./UserCard";
 import UsersList from "./UsersList";
 
 const Sidebar = ({ selectedUser, setSelectedUser }) => {

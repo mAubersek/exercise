@@ -4,11 +4,12 @@ import SuccessNotification from "./Notification";
 
 const UserDetail = ({ user }) => {
   let id, firstName, lastName, age, gender, email, phone;
-  if (user) {
-    ({ id, firstName, lastName, age, gender, email, phone } = user);
-  }
+  if (user) ({ id, firstName, lastName, age, gender, email, phone } = user);
+
+  const apiUrl = process.env.REACT_APP_API_URL;
+
   const [enabledEdit, setEnabledEdit] = useState(false);
-  const [showNotification, setShowNotification] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     setEnabledEdit(false);
@@ -20,7 +21,7 @@ const UserDetail = ({ user }) => {
     const updatedData = Object.fromEntries(formData.entries());
     console.log(updatedData);
     await axios
-      .put(`https://dummyjson.com/users/${id}`, updatedData, {
+      .put(`${apiUrl}/users/${id}`, updatedData, {
         headers: { "Content-Type": "application/json" },
       })
       .then((r) => {
