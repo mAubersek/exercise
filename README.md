@@ -57,17 +57,17 @@ If you need help contact me at jan@syyclops.com or anthony.demattos@syyclops.com
 
 To test the implementation, follow these steps:
 
-1. Install the testing framework by running:
+- Install the testing framework by running:
    ```bash
    pip install pytest
    ```
 
-2. Execute the tests with:
+- Execute the tests with:
    ```bash
    pytest
    ```
 
-3. In the frontend, create an environment variable file and add the following line:
+- In the frontend, create an environment variable file and add the following line:
    ```env
    REACT_APP_API_URL=http://127.0.0.1:8000
    ```
