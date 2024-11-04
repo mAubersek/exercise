@@ -52,3 +52,22 @@ Your server should be available at http://127.0.0.1:8000
   - Write tests to ensure everything works properly
 
 If you need help contact me at jan@syyclops.com or anthony.demattos@syyclops.com.
+
+## After Solution
+
+To test the implementation, follow these steps:
+
+1. Install the testing framework by running:
+   ```bash
+   pip install pytest
+   ```
+
+2. Execute the tests with:
+   ```bash
+   pytest
+   ```
+
+3. In the frontend, create an environment variable file and add the following line:
+   ```env
+   REACT_APP_API_URL=http://127.0.0.1:8000
+   ```

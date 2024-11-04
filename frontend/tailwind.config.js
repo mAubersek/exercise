@@ -21,7 +21,7 @@ module.exports = {
     function ({ addComponents }) {
       addComponents({
         ".btn-primary": {
-          "@apply px-4 py-2 bg-orange text-white rounded-lg hover:bg-orange-focus transition-transform duration-200":
+          "@apply px-4 py-2 bg-orange border-orange text-white rounded-lg hover:bg-orange-focus transition-transform duration-200":
             {},
           "&:hover": {
             "@apply scale-105": {}, // Slightly larger on hover
@@ -44,7 +44,7 @@ module.exports = {
           },
         },
         select: {
-          "@apply w-2/3 border border-gray-300 rounded p-2 outline-none focus:outline focus:outline-orange-focus":
+          "@apply w-1/3 border border-gray-300 rounded p-2 outline-none focus:outline focus:outline-orange-focus":
             {},
         },
       });
